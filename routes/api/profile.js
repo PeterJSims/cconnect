@@ -7,6 +7,7 @@ const auth = require('../../middleware/auth');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 
 // @route    GET api/profile/me
 // @desc     Get current users profile
@@ -137,15 +138,17 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
 	try {
-		//Remove profile
+		// Remove user posts
+		await Post.deleteMany({ user: req.user.id });
+		// Remove profile
 		await Profile.findOneAndRemove({ user: req.user.id });
-		//Remove user
-		await Profile.findOneAndRemove({ _id: req.user.id });
+		// Remove user
+		await User.findOneAndRemove({ _id: req.user.id });
 
-		res.json({ msg: 'User has been removed' });
-	} catch (error) {
-		console.error(error.message);
-		res.status(500).send('Server error');
+		res.json({ msg: 'User deleted' });
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
 	}
 });
 
@@ -220,16 +223,15 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 // @route    PUT api/profile/education
 // @desc     Add profile education
 // @access   Private
-
 router.put(
 	'/education',
 	[
 		auth,
 		[
-			check('school', 'School name is required').not().isEmpty(),
-			check('degree', 'Degree type is required').not().isEmpty(),
+			check('school', 'School is required').not().isEmpty(),
+			check('degree', 'Degree is required').not().isEmpty(),
 			check('fieldofstudy', 'Field of study is required').not().isEmpty(),
-			check('date', 'Date of attendance is required').not().isEmpty()
+			check('from', 'From date is required').not().isEmpty()
 		]
 	],
 	async (req, res) => {
@@ -256,10 +258,11 @@ router.put(
 			profile.education.unshift(newEdu);
 
 			await profile.save();
+
 			res.json(profile);
-		} catch (error) {
-			console.error(error.message);
-			res.status(500).send('Server error');
+		} catch (err) {
+			console.error(err.message);
+			res.status(500).send('Server Error');
 		}
 	}
 );

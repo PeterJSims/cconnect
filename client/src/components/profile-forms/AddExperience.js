@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExperience } from '../../actions/profile';
@@ -84,7 +84,6 @@ const AddExperience = ({ addExperience, history }) => {
 						<input
 							type="checkbox"
 							name="current"
-							value=""
 							checked={current}
 							value={current}
 							onChange={(e) => {

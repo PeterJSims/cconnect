@@ -10,11 +10,12 @@ const DashboardActions = () => {
 			<Link to="/add-experience" className="btn">
 				<i className="fab fa-black-tie text-primary" /> Add Experience
 			</Link>
-			<Link to="/add-education" className="btn">
-				<i className="fas fa-graduation-cap text-primary" /> Add Education
-			</Link>
 		</div>
 	);
 };
 
 export default DashboardActions;
+
+/* <Link to="/add-education" className="btn">
+				<i className="fas fa-graduation-cap text-primary" /> Add Education
+			</Link> */

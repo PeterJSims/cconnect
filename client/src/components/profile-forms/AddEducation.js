@@ -25,8 +25,7 @@ const AddEducation = ({ addEducation, history }) => {
 		<Fragment>
 			<h1 className="large text-primary">Add Your Education</h1>
 			<p className="lead">
-				<i className="fas fa-code-branch" /> Add any school or bootcamp that you have attended, or tell us if
-				you are self-taught!
+				<i className="fas fa-code-branch" /> Add any school or bootcamp that you have attended
 			</p>
 			<small>* = required field</small>
 			<form
@@ -39,7 +38,7 @@ const AddEducation = ({ addEducation, history }) => {
 				<div className="form-group">
 					<input
 						type="text"
-						placeholder="* School or Bootcamp Name or Self-taught"
+						placeholder="* School or Bootcamp"
 						name="school"
 						value={school}
 						onChange={(e) => onChange(e)}
@@ -49,7 +48,7 @@ const AddEducation = ({ addEducation, history }) => {
 				<div className="form-group">
 					<input
 						type="text"
-						placeholder="* Degree or Certificate (N/A for Self-taught)"
+						placeholder="* Degree or Certificate"
 						name="degree"
 						value={degree}
 						onChange={(e) => onChange(e)}
@@ -81,7 +80,7 @@ const AddEducation = ({ addEducation, history }) => {
 								toggleDisabled(!toDateDisabled);
 							}}
 						/>{' '}
-						Current School
+						Current
 					</p>
 				</div>
 				<div className="form-group">
