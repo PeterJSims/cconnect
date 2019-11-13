@@ -1,4 +1,5 @@
 node_modules/
 .env
 config/default.json
+
 # IGNORE config/production.json WHEN NOT DEPLOYING TO HEROKU!
